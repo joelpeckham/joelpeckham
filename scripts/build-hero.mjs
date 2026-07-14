@@ -17,12 +17,9 @@ const root = path.resolve(__dirname, "..");
 
 const WIDTH = 1100;
 const HEIGHT = 520;
-const INK = "#141210";
-const PAPER = "#f1ebdd";
 const RED = "#e1352a";
 const BLUE = "#1f45d8";
 const YELLOW = "#f7c000";
-const GREY = "#6b6560";
 
 function loadFont(rel) {
   const buf = fs.readFileSync(path.join(root, rel));
@@ -35,8 +32,17 @@ function loadFont(rel) {
  * Prefer this over font.getPath() — some OFL fonts (e.g. JetBrains Mono) trip
  * opentype.js on unsupported GSUB lookup formats. Manual layout stays stable
  * and still applies kerning via the font's kern table when present.
+ *
+ * Themeable fills use `className` (CSS + prefers-color-scheme). Accents use `fill`.
  */
-function textPath(font, text, x, y, fontSize, { fill = INK, letterSpacing = 0, kerning = true } = {}) {
+function textPath(
+  font,
+  text,
+  x,
+  y,
+  fontSize,
+  { fill, className, letterSpacing = 0, kerning = true } = {},
+) {
   const scale = (1 / font.unitsPerEm) * fontSize;
   let cursor = x;
   const parts = [];
@@ -57,7 +63,15 @@ function textPath(font, text, x, y, fontSize, { fill = INK, letterSpacing = 0, k
     cursor += advance + letterSpacing * fontSize;
   }
 
-  return `<path fill="${fill}" d="${parts.join("")}"/>`;
+  const attrs = [
+    className ? `class="${className}"` : null,
+    fill ? `fill="${fill}"` : null,
+    `d="${parts.join("")}"`,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return `<path ${attrs}/>`;
 }
 
 const jost = loadFont("fonts/Jost-Black.ttf");
@@ -65,9 +79,9 @@ const mono = loadFont("fonts/JetBrainsMono-Medium.ttf");
 
 const label = "JOEL PECKHAM · FULL-STACK · AI · LARAMIE, WY";
 const lines = [
-  { text: "I MAKE", fill: INK },
-  { text: "SOFTWARE", fill: INK },
-  { text: "THAT HELPS", fill: INK },
+  { text: "I MAKE", className: "ink" },
+  { text: "SOFTWARE", className: "ink" },
+  { text: "THAT HELPS", className: "ink" },
   { text: "PEOPLE.", fill: RED },
 ];
 
@@ -83,31 +97,42 @@ const displayTracking = -0.02;
 const lineBaselines = [178, 268, 358, 448];
 
 const labelPath = textPath(mono, label, copyX, labelY, labelSize, {
-  fill: GREY,
+  className: "muted",
   letterSpacing: labelTracking,
 });
 
 const displayPaths = lines
   .map((line, i) =>
     textPath(jost, line.text, copyX, lineBaselines[i], displaySize, {
-      fill: line.fill,
+      ...line,
       letterSpacing: displayTracking,
     }),
   )
   .join("\n  ");
 
+// prefers-color-scheme works for SVGs loaded as <img> on GitHub.
 const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-labelledby="title desc">
   <title id="title">Joel Peckham — I make software that helps people.</title>
-  <desc id="desc">Bauhaus-style profile banner. Text is outlined glyph paths (Jost Black, JetBrains Mono) — no runtime fonts required.</desc>
+  <desc id="desc">Bauhaus-style profile banner. Text is outlined glyph paths (Jost Black, JetBrains Mono) — no runtime fonts required. Colors follow light/dark via prefers-color-scheme.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .ink { fill: #141210; }
+    .muted { fill: #6b6560; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .ink { fill: #f0f6fc; }
+      .muted { fill: #8b949e; }
+    }
+  </style>
 
-  <!-- paper ground + heavy ink rule -->
-  <rect width="${WIDTH}" height="${HEIGHT}" fill="${PAPER}"/>
-  <rect y="${HEIGHT - 3}" width="${WIDTH}" height="3" fill="${INK}"/>
+  <!-- ground + heavy rule (themeable) -->
+  <rect class="bg" width="${WIDTH}" height="${HEIGHT}"/>
+  <rect class="ink" y="${HEIGHT - 3}" width="${WIDTH}" height="3"/>
 
-  <!-- decorative shapes (homepage hero) -->
+  <!-- decorative shapes (homepage hero) — Bauhaus accents stay fixed -->
   <circle cx="1020" cy="-20" r="160" fill="${BLUE}"/>
-  <path d="M780 520 A110 110 0 0 1 1000 520 Z" fill="${YELLOW}" stroke="${INK}" stroke-width="3"/>
+  <path d="M780 520 A110 110 0 0 1 1000 520 Z" fill="${YELLOW}"/>
   <polygon points="720,210 768,294 672,294" fill="${RED}" transform="rotate(18 720 252)"/>
 
   <!-- outlined type -->
