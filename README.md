@@ -1,6 +1,6 @@
 <a href="https://jpeckham.com">
   <img
-    src="./assets/hero.png"
+    src="./assets/hero.svg"
     alt="I make software that helps people. Joel Peckham — Full-stack · AI · Laramie, WY"
     width="100%"
   />

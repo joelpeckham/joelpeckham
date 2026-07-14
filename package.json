@@ -1,0 +1,12 @@
+{
+  "name": "joelpeckham",
+  "private": true,
+  "type": "module",
+  "description": "GitHub profile README for joelpeckham",
+  "scripts": {
+    "build:hero": "node scripts/build-hero.mjs"
+  },
+  "devDependencies": {
+    "opentype.js": "^2.0.0"
+  }
+}
