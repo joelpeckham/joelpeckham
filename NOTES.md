@@ -32,3 +32,7 @@ Edit copy / layout in `scripts/build-hero.mjs`. Fonts live in `fonts/` (OFL — 
 ### Gotcha we hit
 
 `path.toPathData({ decimalPlaces: 2 })` defaults `flipY: true`. Glyph paths from `glyph.getPath()` are already SVG-Y. That double-flip produced `NaN` on flat stems (I, E, …). Pass a number (`toPathData(2)`) or `{ flipY: false }`.
+
+### Light / dark
+
+GitHub honors `prefers-color-scheme` inside SVGs loaded as `<img>`. Themeable fills (`.bg`, `.ink`, `.muted`) live in a `<style>` block; red / blue / yellow accents stay fixed.
