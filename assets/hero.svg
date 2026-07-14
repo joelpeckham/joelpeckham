@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520" role="img" aria-labelledby="title desc">
+  <title id="title">Joel Peckham  I make software that helps people.</title>
+  <desc id="desc">Bauhaus-style profile banner with geometric shapes and bold display type.</desc>
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap");
+      .label {
+        font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        fill: #6b6560;
+      }
+      .display {
+        font-family: Jost, Futura, "Century Gothic", "Arial Narrow", Arial, sans-serif;
+        font-size: 92px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        fill: #141210;
+      }
+      .accent { fill: #e1352a; }
+    </style>
+  </defs>
+
+  <!-- paper ground + heavy ink rule -->
+  <rect width="1100" height="520" fill="#f1ebdd"/>
+  <rect y="517" width="1100" height="3" fill="#141210"/>
+
+  <!-- decorative shapes (homepage hero) -->
+  <circle cx="1020" cy="-20" r="160" fill="#1f45d8"/>
+  <path d="M780 520 A110 110 0 0 1 1000 520 Z" fill="#f7c000" stroke="#141210" stroke-width="3"/>
+  <polygon points="720,210 768,294 672,294" fill="#e1352a" transform="rotate(18 720 252)"/>
+
+  <!-- copy -->
+  <text class="label" x="56" y="78">Joel Peckham · Full-stack · AI · Laramie, WY</text>
+
+  <text class="display" x="56" y="178">I make</text>
+  <text class="display" x="56" y="268">software</text>
+  <text class="display" x="56" y="358">that helps</text>
+  <text class="display accent" x="56" y="448">people.</text>
+</svg>
