@@ -119,16 +119,18 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     .bg { fill: #ffffff; }
     .ink { fill: #141210; }
     .muted { fill: #6b6560; }
+    .rule { fill: #808080; }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #0d1117; }
+      .bg { fill: #212830; }
       .ink { fill: #f0f6fc; }
       .muted { fill: #8b949e; }
+      .rule { fill: #808080; }
     }
   </style>
 
-  <!-- ground + heavy rule (themeable) -->
+  <!-- ground + subtle rule (themeable) -->
   <rect class="bg" width="${WIDTH}" height="${HEIGHT}"/>
-  <rect class="ink" y="${HEIGHT - 3}" width="${WIDTH}" height="3"/>
+  <rect class="rule" y="${HEIGHT - 3}" width="${WIDTH}" height="3"/>
 
   <!-- decorative shapes (homepage hero) — Bauhaus accents stay fixed -->
   <circle cx="1020" cy="-20" r="160" fill="${BLUE}"/>
