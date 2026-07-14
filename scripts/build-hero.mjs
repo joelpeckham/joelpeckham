@@ -128,14 +128,16 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     }
   </style>
 
-  <!-- ground + subtle rule (themeable) -->
+  <!-- ground -->
   <rect class="bg" width="${WIDTH}" height="${HEIGHT}"/>
-  <rect class="rule" y="${HEIGHT - 3}" width="${WIDTH}" height="3"/>
 
   <!-- decorative shapes (homepage hero) — Bauhaus accents stay fixed -->
   <circle cx="1020" cy="-20" r="160" fill="${BLUE}"/>
   <path d="M780 520 A110 110 0 0 1 1000 520 Z" fill="${YELLOW}"/>
   <polygon points="720,210 768,294 672,294" fill="${RED}" transform="rotate(18 720 252)"/>
+
+  <!-- rule above the yellow so the semicircle tucks behind it -->
+  <rect class="rule" y="${HEIGHT - 3}" width="${WIDTH}" height="3"/>
 
   <!-- outlined type -->
   ${labelPath}
