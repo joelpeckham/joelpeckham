@@ -12,13 +12,13 @@
 
 I'm a software developer and former graphic designer based in Laramie, Wyoming. I graduated with a B.S. in Computer Science in 2022. I work across the whole stack and I like doing things right — *before* they come back to bite me.
 
-For the last three years I've been at [BetterRx](https://www.betterrx.com/), building the best hospice pharmacy solution on the market. When I'm not coding, I'm outside hiking, climbing, or skiing.
+I just started at [Revelation Pharma](https://revelationpharma.com/) building patient and prescriber portals for [HiveRx](https://www.hiverx.com/). Before that I spent three years at [BetterRx](https://www.betterrx.com/) building hospice pharmacy software. When I'm not coding, I'm outside hiking, climbing, or skiing.
 
 Most of what I build lives on **[jpeckham.com](https://jpeckham.com)** — tools, models, and demos you can try yourself.
 
 ### Stack
 
-`PHP` · `Laravel` · `Livewire` · `TypeScript` · `React` · `Next.js` · `Tailwind` · `Postgres`
+`PHP` · `Laravel` · `Vue` · `Inertia` · `Livewire` · `TypeScript` · `React` · `Next.js` · `Tailwind` · `Postgres`
 
 ### Elsewhere
 
